@@ -19,8 +19,8 @@ describe('i-auth routes', () => {
     
     expect(res.body).toEqual({
       id: expect.any(String),
-      username: 'I_am_not_real',
-      email: 'fake@fake.com',
+      username: 'fake_github_user',
+      email: 'not-real@example.com',
       avatar: expect.any(String),
       iat: expect.any(Number),
       exp: expect.any(Number),
