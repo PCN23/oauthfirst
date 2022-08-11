@@ -4,6 +4,9 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
+jest.mock('../lib/services/github');
+
+
 describe('i-auth routes', () => {
   beforeEach(() => {
     return setup(pool);
