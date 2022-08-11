@@ -14,7 +14,7 @@ describe('i-auth routes', () => {
   it('should login and redirect users to /api/v1/github/dashboard', async () => {
     const res = await request
       .agent(app)
-      .get('/api/v1/github/vista?code=42')
+      .get('/api/v1/github/callback?code=42')
       .redirects(1);
     
     expect(res.body).toEqual({
@@ -24,7 +24,7 @@ describe('i-auth routes', () => {
       avatar: expect.any(String),
       iat: expect.any(Number),
       exp: expect.any(Number),
-    })
+    });
   });
   afterAll(() => {
     pool.end();
