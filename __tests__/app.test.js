@@ -1,8 +1,8 @@
 const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
-//const { request } = require('express');
 const request = require('supertest');
 const app = require('../lib/app');
+const agent  = request.agent(app);
 
 jest.mock('../lib/services/github');
 
@@ -25,6 +25,10 @@ describe('i-auth routes', () => {
       iat: expect.any(Number),
       exp: expect.any(Number),
     });
+  });
+  it('should delete users to /api/v1/github', async () => {
+    const res = await agent.delete('/api/v1/github/callback?code=42');
+    expect(res.status).toBe(200);
   });
   afterAll(() => {
     pool.end();
