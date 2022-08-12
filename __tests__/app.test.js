@@ -30,6 +30,16 @@ describe('i-auth routes', () => {
     const res = await agent.delete('/api/v1/github/callback?code=42');
     expect(res.status).toBe(200);
   });
+  it('should get a new post to api/v1/posts', async () => {
+    await agent.get('/api/v1/github/callback?code=42');
+    const res = await agent.get('/api/v1/posts');
+    expect(res.body).toEqual(expect.arrayContaining([
+      {
+        id: expect.any(String),
+        posts: expect.any(String),
+      }
+    ]));
+  });
   afterAll(() => {
     pool.end();
   });
